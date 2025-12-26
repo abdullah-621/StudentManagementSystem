@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.student.controller.SearchStudentController">
+
+    <!-- Top Bar -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #FF9800; -fx-padding: 15px;">
+            <Button onAction="#handleBack" style="-fx-background-color: white; -fx-text-fill: #FF9800;" text="← Back" />
+            <Label text="Search / View Students" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="20.0" />
+                </font>
+            </Label>
+        </HBox>
+    </top>
+
+    <!-- Center Content -->
+    <center>
+        <VBox minHeight="650.0" minWidth="1150.0" prefHeight="650.0" prefWidth="1150.0" spacing="20.0">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+
+            <!-- Search Section -->
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <Label text="Search by ID or Name:">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="searchField" prefWidth="300.0" promptText="Enter Student ID or Name" />
+                <Button onAction="#handleSearch" style="-fx-background-color: #FF9800; -fx-text-fill: white;" text="Search" />
+                <Button onAction="#handleShowAll" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Show All" />
+                <Button onAction="#handleClear" text="Clear" />
+            </HBox>
+
+            <Label fx:id="messageLabel">
+                <font>
+                    <Font name="System Bold" size="13.0" />
+                </font>
+            </Label>
+
+            <!-- Table Section -->
+            <TableView fx:id="studentTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idColumn" prefWidth="120.0" text="Student ID">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="id" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Name">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="name" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="emailColumn" prefWidth="220.0" text="Email">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="email" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="phoneColumn" prefWidth="150.0" text="Phone">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="phone" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+                <placeholder>
+                    <Label text="No students found. Click 'Show All' to view all students." />
+                </placeholder>
+            </TableView>
+
+            <HBox alignment="CENTER">
+                <Label fx:id="countLabel" text="Total Students: 0">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

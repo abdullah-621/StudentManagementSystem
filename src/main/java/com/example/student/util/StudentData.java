@@ -6,14 +6,30 @@ import java.util.List;
 
 public class StudentData {
 
-    private static final List<Student> students = new ArrayList<>();
+    private static List<Student> students = new ArrayList<>();
+    
+    // Static block to load data when class is first loaded
+    static {
+        loadData();
+    }
+
+    // Load data from file
+    private static void loadData() {
+        students = StudentDataManager.loadStudents();
+    }
+
+    // Save data to file
+    private static void saveData() {
+        StudentDataManager.saveStudents(students);
+    }
 
     public static void addStudent(Student student) {
         students.add(student);
+        saveData(); // Auto-save after adding
     }
 
     public static List<Student> getAllStudents() {
-        return students;
+        return new ArrayList<>(students); // Return copy to prevent external modification
     }
 
     public static Student findStudentById(String id) {
@@ -29,6 +45,7 @@ public class StudentData {
         Student student = findStudentById(id);
         if (student != null) {
             students.remove(student);
+            saveData(); // Auto-save after deleting
             return true;
         }
         return false;
@@ -38,6 +55,7 @@ public class StudentData {
         for (int i = 0; i < students.size(); i++) {
             if (students.get(i).getId().equalsIgnoreCase(id)) {
                 students.set(i, updatedStudent);
+                saveData(); // Auto-save after updating
                 return true;
             }
         }

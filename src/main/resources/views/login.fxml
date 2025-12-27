@@ -6,25 +6,23 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" minHeight="650.0" minWidth="1150.0" prefHeight="650.0" prefWidth="1150.0" 
-      spacing="20.0" style="-fx-background-color: #f5f5f5;" 
-      xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" 
-      fx:controller="com.example.student.controller.LoginController">
+<VBox alignment="CENTER" maxHeight="722.0" maxWidth="1150.0" minHeight="650.0" minWidth="1150.0" prefHeight="713.0" prefWidth="1150.0" spacing="20.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.student.controller.LoginController">
     <padding>
         <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
     </padding>
 
     <!-- Title Section -->
     <VBox alignment="CENTER" spacing="10.0">
-        <Label text="Student Management System" style="-fx-text-fill: #2196F3;">
+        <Label style="-fx-text-fill: #2196F3;" text="Student Management System">
             <font>
                 <Font name="System Bold" size="32.0" />
             </font>
         </Label>
-        <Label text="Please login to continue" style="-fx-text-fill: #666;">
+        <Label style="-fx-text-fill: #666;" text="Please login to continue">
             <font>
                 <Font size="16.0" />
             </font>
@@ -44,23 +42,33 @@
         </Label>
 
         <VBox maxWidth="350.0" spacing="15.0">
+            <!-- Username Field -->
             <Label text="Username:">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
             </Label>
-            <TextField fx:id="usernameField" prefHeight="40.0" promptText="Enter username" 
-                       style="-fx-font-size: 14px; -fx-padding: 10px;" />
+            <TextField fx:id="usernameField" prefHeight="40.0" promptText="Enter username" style="-fx-font-size: 14px; -fx-padding: 10px;" />
 
+            <!-- Password Field with Eye Icon -->
             <Label text="Password:">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
             </Label>
-            <PasswordField fx:id="passwordField" prefHeight="40.0" promptText="Enter password" 
-                           style="-fx-font-size: 14px; -fx-padding: 10px;" />
+            
+            <StackPane>
+                <PasswordField fx:id="passwordField" prefHeight="40.0" promptText="Enter password" style="-fx-font-size: 14px; -fx-padding: 10px 45px 10px 10px;" />
+                <TextField fx:id="passwordVisibleField" managed="false" prefHeight="40.0" promptText="Enter password" style="-fx-font-size: 14px; -fx-padding: 10px 45px 10px 10px;" visible="false" />
+                
+                <Button fx:id="togglePasswordButton" onAction="#togglePasswordVisibility" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-font-size: 18px;" text="👁‍🗹" StackPane.alignment="CENTER_RIGHT">
+                    <StackPane.margin>
+                        <Insets right="5.0" />
+                    </StackPane.margin>
+                </Button>
+            </StackPane>
 
-            <Label fx:id="errorLabel" textFill="RED" wrapText="true" minHeight="25.0">
+            <Label fx:id="errorLabel" minHeight="25.0" textFill="RED" wrapText="true">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -70,31 +78,11 @@
                 <VBox.margin>
                     <Insets top="10.0" />
                 </VBox.margin>
-                <Button onAction="#handleLogin" prefHeight="45.0" prefWidth="140.0" 
-                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-cursor: hand;" 
-                        text="Login" />
-                <Button onAction="#handleClear" prefHeight="45.0" prefWidth="140.0" 
-                        style="-fx-font-size: 16px; -fx-cursor: hand;" 
-                        text="Clear" />
+                <Button onAction="#handleLogin" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-cursor: hand;" text="Login" />
+                <Button onAction="#handleClear" prefHeight="45.0" prefWidth="140.0" style="-fx-font-size: 16px; -fx-cursor: hand;" text="Clear" />
             </HBox>
         </VBox>
     </VBox>
 
-    <!-- Default Credentials Info -->
-    <!-- <VBox spacing="5.0" alignment="CENTER">
-        <VBox.margin>
-            <Insets top="20.0" />
-        </VBox.margin>
-        <Label text="Default Login Credentials:" style="-fx-text-fill: #666;">
-            <font>
-                <Font size="13.0" />
-            </font>
-        </Label>
-        <Label text="Username: admin  |  Password: admin" style="-fx-text-fill: #888;">
-            <font>
-                <Font name="System Bold" size="13.0" />
-            </font>
-        </Label>
-    </VBox> -->
 
 </VBox>

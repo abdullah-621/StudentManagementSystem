@@ -14,11 +14,16 @@ public class Main extends Application {
                     getClass().getResource("/views/login.fxml")
             );
 
-            Scene scene = new Scene(loader.load(), 1150, 650);
+            Scene scene = new Scene(loader.load(), 1150, 690);
 
             primaryStage.setTitle("Student Management System");
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
+
+            // Force window dimensions
+            primaryStage.setWidth(1150);
+            primaryStage.setHeight(718);
+
             primaryStage.show();
 
         } catch (Exception e) {

@@ -2,6 +2,7 @@ package com.example.student.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -16,7 +17,52 @@ public class LoginController {
     private PasswordField passwordField;
 
     @FXML
+    private TextField passwordVisibleField;
+
+    @FXML
+    private Button togglePasswordButton;
+
+    @FXML
     private Label errorLabel;
+
+    private boolean passwordVisible = false;
+
+    @FXML
+    public void initialize() {
+        // Initially hide the visible password field
+        passwordVisibleField.setVisible(false);
+        passwordVisibleField.setManaged(false);
+        
+        // Sync password fields
+        passwordField.textProperty().addListener((obs, oldVal, newVal) -> {
+            passwordVisibleField.setText(newVal);
+        });
+        
+        passwordVisibleField.textProperty().addListener((obs, oldVal, newVal) -> {
+            passwordField.setText(newVal);
+        });
+    }
+
+    @FXML
+    private void togglePasswordVisibility(ActionEvent event) {
+        passwordVisible = !passwordVisible;
+        
+        if (passwordVisible) {
+            // Show password
+            passwordVisibleField.setVisible(true);
+            passwordVisibleField.setManaged(true);
+            passwordField.setVisible(false);
+            passwordField.setManaged(false);
+            togglePasswordButton.setText("👁");
+        } else {
+            // Hide password
+            passwordVisibleField.setVisible(false);
+            passwordVisibleField.setManaged(false);
+            passwordField.setVisible(true);
+            passwordField.setManaged(true);
+            togglePasswordButton.setText("👁‍🗹");
+        }
+    }
 
     @FXML
     private void handleLogin(ActionEvent event) {
@@ -29,8 +75,8 @@ public class LoginController {
             return;
         }
 
-        // Simple authentication (username: admin, password: admin)
-        if (username.equals("admin") && password.equals("admin")) {
+    
+        if (username.equals("alpineIbex") && password.equals("javafx65")) {
             errorLabel.setText("");
             SceneManager.switchScene(event, "/views/dashboard.fxml");
         } else {
@@ -43,6 +89,7 @@ public class LoginController {
     private void handleClear(ActionEvent event) {
         usernameField.clear();
         passwordField.clear();
+        passwordVisibleField.clear();
         errorLabel.setText("");
     }
 }

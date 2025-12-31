@@ -85,6 +85,11 @@
                             <PropertyValueFactory property="batch" />
                         </cellValueFactory>
                     </TableColumn>
+                    <TableColumn fx:id="cgpa" prefWidth="80.0" text="Cgpa">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="cgpa" />
+                        </cellValueFactory>
+                    </TableColumn>
                 </columns>
                 <placeholder>
                     <Label text="No students found. Click 'Show All' to view all students." />

@@ -1,12 +1,42 @@
 [
   {
-    "id": "621",
-    "name": "masum",
-    "email": "masum@gmail.com",
+    "id": "202220000074",
+    "name": "Kabir Ahmed shahil",
+    "email": "shahil@gmail.com",
     "phone": "000000000000",
     "department": "CSE - Computer Science and Engineering",
+    "batch": "62",
+    "semester": "8th",
+    "cgpa": "4.0"
+  },
+  {
+    "id": "2024000000100",
+    "name": "Mahedi Hasan siam",
+    "email": "siam@gmail.com",
+    "phone": "999999999999",
+    "department": "CSE - Computer Science and Engineering",
+    "batch": "66",
+    "semester": "5th",
+    "cgpa": "4.0"
+  },
+  {
+    "id": "2024000000154",
+    "name": "Rifat Hasan",
+    "email": "rifat@gmail.com",
+    "phone": "888888888888",
+    "department": "CSE - Computer Science and Engineering",
+    "batch": "66",
+    "semester": "5th",
+    "cgpa": "4.0"
+  },
+  {
+    "id": "2023200000621",
+    "name": "Abdullah Al Masum",
+    "email": "a.a.masum621@gmail.com",
+    "phone": "01619791880",
+    "department": "CSE - Computer Science and Engineering",
     "batch": "65",
-    "semester": "6th",
-    "cgpa": "3.92"
+    "semester": "7th",
+    "cgpa": "3.90"
   }
 ]

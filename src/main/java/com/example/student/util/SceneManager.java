@@ -11,15 +11,40 @@ public class SceneManager {
 
     public static void switchScene(ActionEvent event, String fxmlPath) {
         try {
-            Parent root = FXMLLoader.load(
-                    SceneManager.class.getResource(fxmlPath)
-            );
-
+            // Get the current stage
             Stage stage = (Stage) ((Node) event.getSource())
                     .getScene()
                     .getWindow();
-
-            stage.setScene(new Scene(root));
+            
+            // Remember current state
+            boolean wasMaximized = stage.isMaximized();
+            boolean wasFullScreen = stage.isFullScreen();
+            double currentWidth = stage.getWidth();
+            double currentHeight = stage.getHeight();
+            double currentX = stage.getX();
+            double currentY = stage.getY();
+            
+            // Load new scene
+            Parent root = FXMLLoader.load(
+                    SceneManager.class.getResource(fxmlPath)
+            );
+            
+            Scene newScene = new Scene(root);
+            stage.setScene(newScene);
+            
+            // Restore the state
+            if (wasMaximized) {
+                stage.setMaximized(true);
+            } else if (wasFullScreen) {
+                stage.setFullScreen(true);
+            } else {
+                // Restore previous size and position
+                stage.setWidth(currentWidth);
+                stage.setHeight(currentHeight);
+                stage.setX(currentX);
+                stage.setY(currentY);
+            }
+            
             stage.show();
 
         } catch (Exception e) {

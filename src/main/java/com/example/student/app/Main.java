@@ -14,16 +14,23 @@ public class Main extends Application {
                     getClass().getResource("/views/login.fxml")
             );
 
+            // Create scene with default size
             Scene scene = new Scene(loader.load(), 1150, 690);
 
             primaryStage.setTitle("Student Management System");
             primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-
-            // Force window dimensions
-            primaryStage.setWidth(1150);
-            primaryStage.setHeight(718);
-
+            
+            // Set minimum size to prevent UI breaking
+            primaryStage.setMinWidth(1150);
+            primaryStage.setMinHeight(690);
+            
+            // Allow resizing
+            primaryStage.setResizable(true);
+            
+            // Center window on screen
+            primaryStage.centerOnScreen();
+            
+            // Show the stage
             primaryStage.show();
 
         } catch (Exception e) {

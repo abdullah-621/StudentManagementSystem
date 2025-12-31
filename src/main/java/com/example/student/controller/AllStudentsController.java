@@ -9,14 +9,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import com.example.student.model.Student;
 import com.example.student.util.SceneManager;
 import com.example.student.util.StudentData;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class AllStudentsController implements Initializable {
 
@@ -39,6 +40,12 @@ public class AllStudentsController implements Initializable {
     private TableColumn<Student, String> phoneColumn;
 
     @FXML
+    private TableColumn<Student, String> departmentColumn;
+
+    @FXML
+    private TableColumn<Student, String> batchColumn;
+
+    @FXML
     private TableColumn<Student, String> semesterColumn;
 
     @FXML
@@ -52,16 +59,33 @@ public class AllStudentsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Set up table columns
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        departmentColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
+        batchColumn.setCellValueFactory(new PropertyValueFactory<>("batch"));
+        semesterColumn.setCellValueFactory(new PropertyValueFactory<>("semester"));
+        cgpaColumn.setCellValueFactory(new PropertyValueFactory<>("cgpa"));
+
         loadAllStudents();
     }
 
     private void loadAllStudents() {
-        ObservableList<Student> students = FXCollections.observableArrayList(
-                StudentData.getAllStudents()
-        );
-        studentTable.setItems(students);
-        updateCount(students.size());
-        messageLabel.setText("");
+        List<Student> allStudents = StudentData.getAllStudents();
+        
+        if (allStudents.isEmpty()) {
+            messageLabel.setText("No students in the system. Add students to see them here.");
+            messageLabel.setStyle("-fx-text-fill: orange;");
+        } else {
+            ObservableList<Student> studentList = FXCollections.observableArrayList(allStudents);
+            studentTable.setItems(studentList);
+            messageLabel.setText("✅ Displaying all students");
+            messageLabel.setStyle("-fx-text-fill: green;");
+        }
+        
+        updateCountLabel(allStudents.size());
     }
 
     @FXML
@@ -69,41 +93,39 @@ public class AllStudentsController implements Initializable {
         String searchText = searchField.getText().trim().toLowerCase();
 
         if (searchText.isEmpty()) {
-            messageLabel.setText("⚠ Please enter search text!");
-            messageLabel.setStyle("-fx-text-fill: orange;");
+            messageLabel.setText("❌ Please enter a search term!");
+            messageLabel.setStyle("-fx-text-fill: red;");
             return;
         }
 
         List<Student> allStudents = StudentData.getAllStudents();
-        List<Student> filteredStudents = new ArrayList<>();
-
-        for (Student student : allStudents) {
-            if (student.getId().toLowerCase().contains(searchText) ||
-                student.getName().toLowerCase().contains(searchText) ||
-                student.getEmail().toLowerCase().contains(searchText)) {
-                filteredStudents.add(student);
-            }
-        }
-
-        ObservableList<Student> observableList = FXCollections.observableArrayList(filteredStudents);
-        studentTable.setItems(observableList);
-        updateCount(filteredStudents.size());
+        List<Student> filteredStudents = allStudents.stream()
+                .filter(s -> s.getId().toLowerCase().contains(searchText) ||
+                        s.getName().toLowerCase().contains(searchText) ||
+                        s.getEmail().toLowerCase().contains(searchText) ||
+                        s.getDepartment().toLowerCase().contains(searchText) ||
+                        s.getBatch().toLowerCase().contains(searchText))
+                .collect(Collectors.toList());
 
         if (filteredStudents.isEmpty()) {
-            messageLabel.setText("❌ No students found matching: " + searchText);
+            messageLabel.setText("❌ No students found matching '" + searchText + "'");
             messageLabel.setStyle("-fx-text-fill: red;");
+            studentTable.getItems().clear();
+            updateCountLabel(0);
         } else {
+            ObservableList<Student> studentList = FXCollections.observableArrayList(filteredStudents);
+            studentTable.setItems(studentList);
+
             messageLabel.setText("✅ Found " + filteredStudents.size() + " student(s)");
             messageLabel.setStyle("-fx-text-fill: green;");
+            updateCountLabel(filteredStudents.size());
         }
     }
 
     @FXML
     private void handleRefresh(ActionEvent event) {
-        loadAllStudents();
         searchField.clear();
-        messageLabel.setText("✅ List refreshed!");
-        messageLabel.setStyle("-fx-text-fill: green;");
+        loadAllStudents();
     }
 
     @FXML
@@ -112,12 +134,12 @@ public class AllStudentsController implements Initializable {
         loadAllStudents();
     }
 
+    private void updateCountLabel(int count) {
+        countLabel.setText("Total Students: " + count);
+    }
+
     @FXML
     private void handleBack(ActionEvent event) {
         SceneManager.switchScene(event, "/views/dashboard.fxml");
-    }
-
-    private void updateCount(int count) {
-        countLabel.setText("Total Students: " + count);
     }
 }

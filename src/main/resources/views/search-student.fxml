@@ -35,12 +35,12 @@
 
             <!-- Search Section -->
             <HBox alignment="CENTER_LEFT" spacing="10.0">
-                <Label text="Search by ID or Name:">
+                <Label text="Search by ID, Name, Department or Batch:">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="searchField" prefWidth="300.0" promptText="Enter Student ID or Name" />
+                <TextField fx:id="searchField" prefWidth="300.0" promptText="Enter Student ID, Name, Department or Batch" />
                 <Button onAction="#handleSearch" style="-fx-background-color: #FF9800; -fx-text-fill: white;" text="Search" />
                 <Button onAction="#handleShowAll" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Show All" />
                 <Button onAction="#handleClear" text="Clear" />
@@ -60,19 +60,29 @@
                             <PropertyValueFactory property="id" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Name">
+                    <TableColumn fx:id="nameColumn" prefWidth="180.0" text="Name">
                         <cellValueFactory>
                             <PropertyValueFactory property="name" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="emailColumn" prefWidth="220.0" text="Email">
+                    <TableColumn fx:id="emailColumn" prefWidth="200.0" text="Email">
                         <cellValueFactory>
                             <PropertyValueFactory property="email" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="phoneColumn" prefWidth="150.0" text="Phone">
+                    <TableColumn fx:id="phoneColumn" prefWidth="130.0" text="Phone">
                         <cellValueFactory>
                             <PropertyValueFactory property="phone" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="departmentColumn" prefWidth="200.0" text="Department">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="department" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="batchColumn" prefWidth="80.0" text="Batch">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="batch" />
                         </cellValueFactory>
                     </TableColumn>
                 </columns>

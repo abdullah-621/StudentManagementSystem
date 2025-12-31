@@ -34,7 +34,7 @@
                 <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
             </padding>
 
-            <VBox maxWidth="400.0" spacing="15.0">
+            <VBox maxWidth="500.0" spacing="15.0">
 
                 <Label text="Search Student by ID, Name, or Email:">
                     <font>
@@ -84,25 +84,41 @@
                         </Label>
                         <Label fx:id="phoneLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                        <Label text="Semester:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                        <Label text="Department:" GridPane.columnIndex="0" GridPane.rowIndex="4">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <Label fx:id="semesterLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="departmentLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-                        <Label text="CGPA:" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                        <Label text="Batch:" GridPane.columnIndex="0" GridPane.rowIndex="5">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <Label fx:id="cgpaLabel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="batchLabel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                        <Label text="Semester:" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="semesterLabel" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+                        <Label text="CGPA:" GridPane.columnIndex="0" GridPane.rowIndex="7">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="cgpaLabel" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
                         <columnConstraints>
                             <ColumnConstraints />
                             <ColumnConstraints />
                         </columnConstraints>
                         <rowConstraints>
+                            <RowConstraints />
+                            <RowConstraints />
                             <RowConstraints />
                             <RowConstraints />
                             <RowConstraints />

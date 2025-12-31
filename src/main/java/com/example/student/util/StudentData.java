@@ -7,57 +7,51 @@ import java.util.List;
 public class StudentData {
 
     private static List<Student> students = new ArrayList<>();
-    
-    // Static block to load data when class is first loaded
-    static {
-        loadData();
-    }
 
-    // Load data from file
-    private static void loadData() {
+    static {
         students = StudentDataManager.loadStudents();
     }
 
-    // Save data to file
-    private static void saveData() {
-        StudentDataManager.saveStudents(students);
-    }
-
-    public static void addStudent(Student student) {
-        students.add(student);
-        saveData(); // Auto-save after adding
-    }
-
+    // 🔹 Get all students
     public static List<Student> getAllStudents() {
-        return new ArrayList<>(students); // Return copy to prevent external modification
+        return students;
     }
 
+    // 🔹 Find student by ID
     public static Student findStudentById(String id) {
         for (Student s : students) {
-            if (s.getId().equalsIgnoreCase(id)) {
+            if (s.getId().equals(id)) {
                 return s;
             }
         }
         return null;
     }
 
-    public static boolean deleteStudent(String id) {
-        Student student = findStudentById(id);
-        if (student != null) {
-            students.remove(student);
-            saveData(); // Auto-save after deleting
-            return true;
+    // 🔹 Add student
+    public static void addStudent(Student student) {
+        students.add(student);
+        StudentDataManager.saveStudents(students);
+    }
+
+    // 🔹 Update student by ID
+    public static boolean updateStudent(String id, Student updatedStudent) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getId().equals(id)) {
+                students.set(i, updatedStudent);
+                StudentDataManager.saveStudents(students);
+                return true;
+            }
         }
         return false;
     }
 
-    public static boolean updateStudent(String id, Student updatedStudent) {
-        for (int i = 0; i < students.size(); i++) {
-            if (students.get(i).getId().equalsIgnoreCase(id)) {
-                students.set(i, updatedStudent);
-                saveData(); // Auto-save after updating
-                return true;
-            }
+    // 🔹 Delete student by ID
+    public static boolean deleteStudent(String id) {
+        Student student = findStudentById(id);
+        if (student != null) {
+            students.remove(student);
+            StudentDataManager.saveStudents(students);
+            return true;
         }
         return false;
     }

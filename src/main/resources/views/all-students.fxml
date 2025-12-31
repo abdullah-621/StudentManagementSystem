@@ -40,7 +40,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="searchField" prefWidth="350.0" promptText="Enter ID, Name or Email" />
+                <TextField fx:id="searchField" prefWidth="350.0" promptText="Enter ID, Name, Email, Department or Batch" />
                 <Button onAction="#handleSearch" style="-fx-background-color: #9C27B0; -fx-text-fill: white;" text="Search" />
                 <Button onAction="#handleRefresh" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Refresh" />
                 <Button onAction="#handleClear" text="Clear" />
@@ -60,27 +60,37 @@
                             <PropertyValueFactory property="id" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="nameColumn" prefWidth="180.0" text="Name">
+                    <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Name">
                         <cellValueFactory>
                             <PropertyValueFactory property="name" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="emailColumn" prefWidth="220.0" text="Email">
+                    <TableColumn fx:id="emailColumn" prefWidth="180.0" text="Email">
                         <cellValueFactory>
                             <PropertyValueFactory property="email" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="phoneColumn" prefWidth="130.0" text="Phone">
+                    <TableColumn fx:id="phoneColumn" prefWidth="120.0" text="Phone">
                         <cellValueFactory>
                             <PropertyValueFactory property="phone" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="semesterColumn" prefWidth="90.0" text="Semester">
+                    <TableColumn fx:id="departmentColumn" prefWidth="180.0" text="Department">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="department" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="batchColumn" prefWidth="70.0" text="Batch">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="batch" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="semesterColumn" prefWidth="80.0" text="Semester">
                         <cellValueFactory>
                             <PropertyValueFactory property="semester" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="cgpaColumn" prefWidth="80.0" text="CGPA">
+                    <TableColumn fx:id="cgpaColumn" prefWidth="70.0" text="CGPA">
                         <cellValueFactory>
                             <PropertyValueFactory property="cgpa" />
                         </cellValueFactory>

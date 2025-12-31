@@ -33,6 +33,12 @@ public class DeleteStudentController {
     private Label phoneLabel;
 
     @FXML
+    private Label departmentLabel;
+
+    @FXML
+    private Label batchLabel;
+
+    @FXML
     private Label semesterLabel;
 
     @FXML
@@ -82,6 +88,8 @@ public class DeleteStudentController {
         nameLabel.setText(currentStudent.getName());
         emailLabel.setText(currentStudent.getEmail());
         phoneLabel.setText(currentStudent.getPhone());
+        departmentLabel.setText(currentStudent.getDepartment());
+        batchLabel.setText(currentStudent.getBatch());
         semesterLabel.setText(currentStudent.getSemester());
         cgpaLabel.setText(currentStudent.getCgpa());
 

@@ -3,6 +3,7 @@ package com.example.student.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import com.example.student.model.Student;
@@ -26,6 +27,12 @@ public class UpdateStudentController {
     private TextField phoneField;
 
     @FXML
+    private ComboBox<String> departmentCombo;
+
+    @FXML
+    private TextField batchField;
+
+    @FXML
     private TextField semesterField;
 
     @FXML
@@ -38,6 +45,20 @@ public class UpdateStudentController {
     private Label messageLabel;
 
     private Student currentStudent;
+
+    @FXML
+    public void initialize() {
+        // Populate department dropdown
+        departmentCombo.getItems().addAll(
+            "CSE - Computer Science and Engineering",
+            "EEE - Electrical and Electronic Engineering",
+            "CE - Civil Engineering",
+            "ME - Mechanical Engineering",
+            "BBA - Business Administration",
+            "English",
+            "LLB - Law"
+        );
+    }
 
     @FXML
     private void handleSearch(ActionEvent event) {
@@ -74,6 +95,8 @@ public class UpdateStudentController {
         nameField.setText(currentStudent.getName());
         emailField.setText(currentStudent.getEmail());
         phoneField.setText(currentStudent.getPhone());
+        departmentCombo.setValue(currentStudent.getDepartment());
+        batchField.setText(currentStudent.getBatch());
         semesterField.setText(currentStudent.getSemester());
         cgpaField.setText(currentStudent.getCgpa());
 
@@ -93,11 +116,13 @@ public class UpdateStudentController {
         String name = nameField.getText().trim();
         String email = emailField.getText().trim();
         String phone = phoneField.getText().trim();
+        String department = departmentCombo.getValue();
+        String batch = batchField.getText().trim();
         String semester = semesterField.getText().trim();
         String cgpa = cgpaField.getText().trim();
 
         if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || 
-            semester.isEmpty() || cgpa.isEmpty()) {
+            department == null || batch.isEmpty() || semester.isEmpty() || cgpa.isEmpty()) {
             messageLabel.setText("❌ Please fill in all fields!");
             messageLabel.setStyle("-fx-text-fill: red;");
             return;
@@ -113,6 +138,20 @@ public class UpdateStudentController {
         // Phone validation
         if (!phone.matches("^[0-9]{10,15}$")) {
             messageLabel.setText("❌ Phone must be 10-15 digits!");
+            messageLabel.setStyle("-fx-text-fill: red;");
+            return;
+        }
+
+        // Batch validation
+        try {
+            int batchNum = Integer.parseInt(batch);
+            if (batchNum < 1 || batchNum > 100) {
+                messageLabel.setText("❌ Batch must be between 1 and 100!");
+                messageLabel.setStyle("-fx-text-fill: red;");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            messageLabel.setText("❌ Batch must be a valid number!");
             messageLabel.setStyle("-fx-text-fill: red;");
             return;
         }
@@ -133,7 +172,7 @@ public class UpdateStudentController {
 
         // Update student
         Student updatedStudent = new Student(
-                currentStudent.getId(), name, email, phone, semester, cgpa
+                currentStudent.getId(), name, email, phone, department, batch, semester, cgpa
         );
 
         if (StudentData.updateStudent(currentStudent.getId(), updatedStudent)) {
@@ -170,6 +209,8 @@ public class UpdateStudentController {
         nameField.clear();
         emailField.clear();
         phoneField.clear();
+        departmentCombo.setValue(null);
+        batchField.clear();
         semesterField.clear();
         cgpaField.clear();
     }
@@ -178,6 +219,8 @@ public class UpdateStudentController {
         nameField.setDisable(false);
         emailField.setDisable(false);
         phoneField.setDisable(false);
+        departmentCombo.setDisable(false);
+        batchField.setDisable(false);
         semesterField.setDisable(false);
         cgpaField.setDisable(false);
         updateButton.setDisable(false);
@@ -187,6 +230,8 @@ public class UpdateStudentController {
         nameField.setDisable(true);
         emailField.setDisable(true);
         phoneField.setDisable(true);
+        departmentCombo.setDisable(true);
+        batchField.setDisable(true);
         semesterField.setDisable(true);
         cgpaField.setDisable(true);
         updateButton.setDisable(true);

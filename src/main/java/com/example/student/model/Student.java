@@ -5,15 +5,20 @@ public class Student {
     private String name;
     private String email;
     private String phone;
+    private String department;
+    private String batch;
     private String semester;
     private String cgpa;
 
     // Constructor
-    public Student(String id, String name, String email, String phone, String semester, String cgpa) {
+    public Student(String id, String name, String email, String phone, 
+                   String department, String batch, String semester, String cgpa) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.department = department;
+        this.batch = batch;
         this.semester = semester;
         this.cgpa = cgpa;
     }
@@ -33,6 +38,14 @@ public class Student {
 
     public String getPhone() {
         return phone;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public String getBatch() {
+        return batch;
     }
 
     public String getSemester() {
@@ -60,6 +73,14 @@ public class Student {
         this.phone = phone;
     }
 
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setBatch(String batch) {
+        this.batch = batch;
+    }
+
     public void setSemester(String semester) {
         this.semester = semester;
     }
@@ -75,6 +96,8 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", department='" + department + '\'' +
+                ", batch='" + batch + '\'' +
                 ", semester='" + semester + '\'' +
                 ", cgpa='" + cgpa + '\'' +
                 '}';

@@ -30,13 +30,43 @@
     "cgpa": "4.0"
   },
   {
-    "id": "2023200000621",
-    "name": "Abdullah Al Masum",
-    "email": "a.a.masum621@gmail.com",
-    "phone": "01619791880",
+    "id": "900",
+    "name": "masum",
+    "email": "masum@gmail",
+    "phone": "000000000000",
     "department": "CSE - Computer Science and Engineering",
     "batch": "65",
-    "semester": "7th",
-    "cgpa": "3.90"
+    "semester": "5",
+    "cgpa": "4"
+  },
+  {
+    "id": "9000",
+    "name": "masum",
+    "email": "masum@gmail",
+    "phone": "0000000000",
+    "department": "LLB - Law",
+    "batch": "87",
+    "semester": "9",
+    "cgpa": "3"
+  },
+  {
+    "id": "10000",
+    "name": "noman",
+    "email": "noman@gmail.com",
+    "phone": "00000000000",
+    "department": "EEE - Electrical and Electronic Engineering",
+    "batch": "87",
+    "semester": "54",
+    "cgpa": "3"
+  },
+  {
+    "id": "876554",
+    "name": "noman",
+    "email": "noman76@gmail.com",
+    "phone": "00000000000",
+    "department": "EEE - Electrical and Electronic Engineering",
+    "batch": "87",
+    "semester": "54",
+    "cgpa": "3"
   }
 ]

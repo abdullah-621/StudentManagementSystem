@@ -86,8 +86,8 @@ public class AddStudentController {
         }
 
         // Phone validation (basic)
-        if (!phone.matches("^[0-9]{10,15}$")) {
-            messageLabel.setText("❌ Phone must be 10-15 digits!");
+        if (!phone.matches("^[0-9]{11,15}$")) {
+            messageLabel.setText("❌ Phone must be 11-15 digits!");
             messageLabel.setStyle("-fx-text-fill: red;");
             return;
         }
